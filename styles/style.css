@@ -174,7 +174,20 @@ textarea {
     height: 2px;
     background: currentColor;
     display: block;
-    margin: 5px 0
+    margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 .section {
@@ -1397,16 +1410,22 @@ h2 {
         top: 100%;
         left: 0;
         right: 0;
-        display: none;
+        display: flex;
         flex-direction: column;
         align-items: stretch;
         padding: 15px 18px;
         background: #fff;
-        box-shadow: 0 8px 18px rgba(30, 65, 100, .12)
+        box-shadow: 0 8px 18px rgba(30, 65, 100, .12);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
     }
 
     .main-nav.open {
-        display: flex
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 
     .main-nav a {
