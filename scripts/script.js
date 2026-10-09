@@ -23,6 +23,27 @@ menuToggle.addEventListener('click', () => {
 });
 document.querySelectorAll('.main-nav a').forEach(link => link.addEventListener('click', () => mainNav.classList.remove('open')));
 
+const galleryFilters = document.querySelectorAll('[data-gallery-filter]');
+const galleryItems = document.querySelectorAll('[data-gallery-category]');
+
+galleryFilters.forEach(button => {
+  const category = button.dataset.galleryFilter;
+  const hasPhotos = category === 'all' || [...galleryItems].some(item => item.dataset.galleryCategory === category);
+  button.hidden = !hasPhotos;
+});
+
+galleryFilters.forEach(button => button.addEventListener('click', () => {
+  const category = button.dataset.galleryFilter;
+  galleryFilters.forEach(filter => {
+    const selected = filter === button;
+    filter.classList.toggle('active', selected);
+    filter.setAttribute('aria-pressed', selected);
+  });
+  galleryItems.forEach(item => {
+    item.hidden = category !== 'all' && item.dataset.galleryCategory !== category;
+  });
+}));
+
 const observer = new IntersectionObserver(entries => entries.forEach(entry => {
   if (entry.isIntersecting) entry.target.classList.add('visible');
 }), { threshold: .12 });

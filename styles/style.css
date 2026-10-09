@@ -78,10 +78,14 @@ textarea {
     place-items: center;
     width: 42px;
     height: 42px;
-    border: 2px solid var(--blue);
-    border-radius: 6px;
-    color: var(--blue);
-    font: 700 17px Georgia, serif
+    flex: none
+}
+
+.brand-mark img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain
 }
 
 .brand-text {
@@ -101,9 +105,288 @@ textarea {
 .main-nav {
     display: flex;
     align-items: center;
-    gap: 23px;
+    gap: 17px;
     color: #465b72;
     font-size: 15px
+}
+
+.events-section {
+    background: #f4f8fc
+}
+
+.events-showcase {
+    display: grid;
+    grid-template-columns: .88fr 1.12fr;
+    min-height: 480px;
+    overflow: hidden;
+    background: var(--navy);
+    box-shadow: 0 18px 40px rgba(16, 52, 93, .14)
+}
+
+.event-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 54px 50px;
+    color: #d3e6f7
+}
+
+.event-year {
+    display: inline-flex;
+    padding: 6px 10px;
+    border: 1px solid rgba(212, 231, 248, .38);
+    color: #d3e6f7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .09em
+}
+
+.event-copy h3 {
+    max-width: 430px;
+    margin: 20px 0 14px;
+    color: #fff;
+    font: 600 34px/1.12 Fraunces, Georgia, serif
+}
+
+.event-copy>p {
+    max-width: 405px;
+    margin: 0;
+    font-size: 15px
+}
+
+.event-highlights {
+    display: grid;
+    gap: 9px;
+    margin: 28px 0;
+    padding: 0;
+    list-style: none;
+    color: #fff;
+    font-size: 14px
+}
+
+.event-highlights li {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.event-highlights span {
+    color: #8dc3ea;
+    font-size: 11px;
+    font-weight: 700
+}
+
+.light-link {
+    margin-top: auto;
+    color: #fff;
+    border-color: #8dbce0
+}
+
+.event-mosaic {
+    display: grid;
+    grid-template-columns: 1.25fr .85fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 7px;
+    padding: 7px;
+    background: #d8e4ed
+}
+
+.event-photo {
+    margin: 0;
+    min-height: 0;
+    overflow: hidden
+}
+
+.event-photo-main {
+    grid-row: 1 / span 2
+}
+
+.event-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease
+}
+
+.event-photo:hover img {
+    transform: scale(1.04)
+}
+
+.event-programming {
+    margin-top: 26px
+}
+
+.event-programming-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 20px
+}
+
+.event-programming-heading .eyebrow {
+    margin-bottom: 7px
+}
+
+.event-programming-heading h3 {
+    margin: 0;
+    color: var(--navy);
+    font: 600 26px/1.18 Fraunces, Georgia, serif
+}
+
+.event-type-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 11px
+}
+
+.event-type-card {
+    min-height: 194px;
+    padding: 19px 17px;
+    border: 1px solid var(--line);
+    border-top: 3px solid #9fc4e2;
+    background: #fff
+}
+
+.event-type-card--public {
+    border-top-color: var(--gold);
+    background: #fffdf8
+}
+
+.event-access {
+    display: block;
+    min-height: 27px;
+    color: #57718b;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    line-height: 1.25;
+    text-transform: uppercase
+}
+
+.event-type-card--public .event-access {
+    color: #a06a09
+}
+
+.event-type-card h4 {
+    margin: 12px 0 8px;
+    color: var(--navy);
+    font: 600 20px/1.1 Fraunces, Georgia, serif
+}
+
+.event-type-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45
+}
+
+.gallery-section {
+    overflow: hidden
+}
+
+.gallery-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 38px 0 24px
+}
+
+.gallery-filter-button {
+    padding: 9px 14px;
+    border: 1px solid #bdd0df;
+    border-radius: 999px;
+    background: #fff;
+    color: #46617e;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: .2s
+}
+
+.gallery-filter-button:hover,
+.gallery-filter-button.active {
+    border-color: var(--blue);
+    background: var(--blue);
+    color: #fff
+}
+
+.photo-gallery {
+    display: grid;
+    grid-auto-flow: dense;
+    grid-auto-rows: 155px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px
+}
+
+.gallery-item {
+    position: relative;
+    grid-row: span 2;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+    background: var(--sky)
+}
+
+.gallery-item--wide {
+    grid-column: span 2
+}
+
+.gallery-item--tall {
+    grid-row: span 3
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .45s ease
+}
+
+.gallery-item::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(5, 31, 62, .78));
+    content: '';
+    pointer-events: none
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05)
+}
+
+.gallery-item figcaption {
+    position: absolute;
+    z-index: 1;
+    right: 17px;
+    bottom: 14px;
+    left: 17px;
+    color: #fff;
+    font: 600 19px/1.1 Fraunces, Georgia, serif
+    opacity: 0;
+    transform: translateY(7px);
+    transition: .25s
+}
+
+.gallery-item figcaption span {
+    display: block;
+    margin-bottom: 3px;
+    color: #c9e5f8;
+    font: 700 10px/1.25 'DM Sans', Arial, sans-serif;
+    letter-spacing: .09em;
+    text-transform: uppercase
+}
+
+.gallery-item:hover figcaption,
+.gallery-item:focus-within figcaption {
+    opacity: 1;
+    transform: none
+}
+
+.gallery-item[hidden] {
+    display: none
 }
 
 .main-nav a:not(.btn):hover {
@@ -462,8 +745,12 @@ h2 em {
     box-shadow: 7px 7px 0 #d4e2ee
 }
 
-.art-book span {
-    font: 34px Georgia, serif
+.art-book-logo {
+    display: block;
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    filter: invert(25%) sepia(24%) saturate(1421%) hue-rotate(171deg) brightness(88%) contrast(89%)
 }
 
 .art-book small {
@@ -543,12 +830,14 @@ h2 em {
 }
 
 .frame-inner:after {
-    content: 'CE';
+    content: '';
     position: absolute;
-    top: 27px;
-    left: 35px;
-    font: 700 54px Georgia, serif;
-    color: rgba(0, 74, 173, .35)
+    top: 20px;
+    left: 29px;
+    width: 75px;
+    height: 75px;
+    background: url('../assets/icon/favicon.png') center / contain no-repeat;
+    opacity: .25
 }
 
 .frame-kicker {
@@ -575,8 +864,16 @@ h2 em {
     right: 25px;
     bottom: 25px;
     text-align: center;
-    font: 28px/1 Georgia, serif;
     color: #f5cc69
+}
+
+.frame-seal-logo {
+    display: block;
+    width: 44px;
+    height: 44px;
+    margin: 0 auto;
+    object-fit: contain;
+    filter: invert(83%) sepia(32%) saturate(786%) hue-rotate(345deg) brightness(100%) contrast(92%)
 }
 
 .frame-seal small {
@@ -1394,6 +1691,18 @@ h2 {
     .split-grid {
         gap: 55px
     }
+
+    .event-copy {
+        padding: 42px 34px
+    }
+
+    .event-copy h3 {
+        font-size: 29px
+    }
+
+    .event-type-grid {
+        grid-template-columns: repeat(3, 1fr)
+    }
 }
 
 @media(max-width:760px) {
@@ -1446,7 +1755,8 @@ h2 {
     .split-grid,
     .crazy-grid,
     .testimonial-layout,
-    .contact-grid {
+    .contact-grid,
+    .events-showcase {
         grid-template-columns: 1fr
     }
 
@@ -1569,6 +1879,33 @@ h2 {
         height: 290px;
         margin-top: 12px
     }
+
+    .event-copy {
+        min-height: 420px;
+        padding: 42px 30px
+    }
+
+    .event-mosaic {
+        min-height: 395px
+    }
+
+    .event-programming-heading {
+        display: block
+    }
+
+    .event-type-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .photo-gallery {
+        grid-auto-rows: 130px;
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .gallery-item figcaption {
+        opacity: 1;
+        transform: none
+    }
 }
 
 @media(max-width:430px) {
@@ -1594,6 +1931,36 @@ h2 {
 
     .footer-grid>div:first-child {
         grid-column: auto
+    }
+
+    .event-copy h3 {
+        font-size: 27px
+    }
+
+    .gallery-filter {
+        margin-top: 28px
+    }
+
+    .photo-gallery {
+        grid-auto-rows: 245px;
+        grid-template-columns: 1fr
+    }
+
+    .gallery-item,
+    .gallery-item--tall {
+        grid-row: span 1
+    }
+
+    .gallery-item--wide {
+        grid-column: span 1
+    }
+
+    .event-type-grid {
+        grid-template-columns: 1fr
+    }
+
+    .event-type-card {
+        min-height: 0
     }
 }
 
