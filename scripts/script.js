@@ -16,12 +16,16 @@ window.addEventListener('scroll', () => {
   document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 500);
 });
 
-menuToggle.addEventListener('click', () => {
-  const open = mainNav.classList.toggle('open');
+function setMenuOpen(open) {
+  mainNav.classList.toggle('open', open);
   menuToggle.setAttribute('aria-expanded', open);
   menuToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+}
+
+menuToggle.addEventListener('click', () => {
+  setMenuOpen(!mainNav.classList.contains('open'));
 });
-document.querySelectorAll('.main-nav a').forEach(link => link.addEventListener('click', () => mainNav.classList.remove('open')));
+document.querySelectorAll('.main-nav a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
 
 const galleryFilters = document.querySelectorAll('[data-gallery-filter]');
 const galleryItems = document.querySelectorAll('[data-gallery-category]');
