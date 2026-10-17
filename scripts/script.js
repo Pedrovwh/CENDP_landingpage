@@ -73,8 +73,9 @@ document.getElementById('prev-testimonial').addEventListener('click', () => show
 document.getElementById('next-testimonial').addEventListener('click', () => showTestimonial(currentTestimonial + 1));
 showTestimonial(0);
 
-document.querySelectorAll('.interest-link').forEach(button => button.addEventListener('click', () => {
-  document.querySelector('[name="course"]').value = button.dataset.course;
+document.querySelectorAll('.course-card').forEach(card => card.addEventListener('click', event => {
+  event.preventDefault();
+  document.querySelector('[name="course"]').value = card.dataset.course;
   document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
 }));
 
