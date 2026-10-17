@@ -1,12 +1,34 @@
+@font-face {
+    font-family: 'Garet';
+    src: url('../assets/fonts/Garet-Book.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap
+}
+
+@font-face {
+    font-family: 'Garet';
+    src: url('../assets/fonts/Garet-Heavy.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap
+}
+
 :root {
-    --blue: #004aad;
-    --navy: #10345d;
-    --ink: #22344b;
-    --muted: #68788b;
-    --pale: #f4f8fc;
-    --sky: #e9f3fb;
-    --gold: #d99b25;
-    --line: #d9e3ed;
+    --blue: #0a485e;
+    --navy: #0a485e;
+    --ink: #0f002b;
+    --muted: #625d72;
+    --pale: #f3fbfa;
+    --sky: #e5f8f6;
+    --accent: #0ddbce;
+    --line: #cfe4e2;
+    --font-body: 'Garet', Arial, sans-serif;
+    --font-heading: 'League Spartan', Arial, sans-serif;
+    --gradient-brand: linear-gradient(132deg, #0f002b 0%, #0a485e 100%);
+    --gradient-brand-glow: radial-gradient(ellipse at 88% 12%, rgba(13, 219, 206, .34), transparent 36%), linear-gradient(132deg, #0f002b 0%, #0a485e 58%, #0f002b 100%);
+    --gradient-soft: radial-gradient(ellipse at 90% 0%, rgba(13, 219, 206, .16), transparent 38%), linear-gradient(125deg, #e5f8f6 0%, #fff 58%, #f3fbfa 100%);
+    --gradient-spectrum: linear-gradient(135deg, #0ddbce 0%, #0a485e 52%, #0f002b 100%);
     --white: #fff
 }
 
@@ -22,7 +44,7 @@ body {
     margin: 0;
     background: #fff;
     color: var(--ink);
-    font-family: 'DM Sans', Arial, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.55
 }
 
@@ -50,8 +72,9 @@ textarea {
     width: 100%;
     padding: 15px 0;
     background: #fff;
-    border-bottom: 3px solid var(--blue);
-    box-shadow: 0 2px 12px rgba(20, 55, 90, .06);
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, #0f002b 0%, #0a485e 58%, #0ddbce 100%) 1;
+    box-shadow: 0 2px 12px rgba(10, 72, 94, .06);
     transition: .25s
 }
 
@@ -106,12 +129,12 @@ textarea {
     display: flex;
     align-items: center;
     gap: 17px;
-    color: #465b72;
+    color: #53707a;
     font-size: 15px
 }
 
 .events-section {
-    background: #f4f8fc
+    background: var(--gradient-soft)
 }
 
 .events-showcase {
@@ -119,8 +142,8 @@ textarea {
     grid-template-columns: .88fr 1.12fr;
     min-height: 480px;
     overflow: hidden;
-    background: var(--navy);
-    box-shadow: 0 18px 40px rgba(16, 52, 93, .14)
+    background: var(--gradient-brand-glow);
+    box-shadow: 0 18px 40px rgba(10, 72, 94, .14)
 }
 
 .event-copy {
@@ -128,16 +151,16 @@ textarea {
     flex-direction: column;
     align-items: flex-start;
     padding: 54px 50px;
-    color: #d3e6f7
+    color: #daf2ef
 }
 
 .event-year {
     display: inline-flex;
     padding: 6px 10px;
-    border: 1px solid rgba(212, 231, 248, .38);
-    color: #d3e6f7;
+    border: 1px solid rgba(218, 242, 239, .38);
+    color: #daf2ef;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: .09em
 }
 
@@ -145,7 +168,7 @@ textarea {
     max-width: 430px;
     margin: 20px 0 14px;
     color: #fff;
-    font: 600 34px/1.12 Fraunces, Georgia, serif
+    font: 600 34px/1.12 var(--font-heading);
 }
 
 .event-copy>p {
@@ -171,15 +194,15 @@ textarea {
 }
 
 .event-highlights span {
-    color: #8dc3ea;
+    color: #0ddbce;
     font-size: 11px;
-    font-weight: 700
+    font-weight: 400
 }
 
 .light-link {
     margin-top: auto;
     color: #fff;
-    border-color: #8dbce0
+    border-color: #0ddbce
 }
 
 .event-mosaic {
@@ -188,7 +211,7 @@ textarea {
     grid-template-rows: 1fr 1fr;
     gap: 7px;
     padding: 7px;
-    background: #d8e4ed
+    background: var(--gradient-spectrum)
 }
 
 .event-photo {
@@ -232,7 +255,7 @@ textarea {
 .event-programming-heading h3 {
     margin: 0;
     color: var(--navy);
-    font: 600 26px/1.18 Fraunces, Georgia, serif
+    font: 600 26px/1.18 var(--font-heading)
 }
 
 .event-type-grid {
@@ -242,37 +265,47 @@ textarea {
 }
 
 .event-type-card {
+    position: relative;
     min-height: 194px;
     padding: 19px 17px;
     border: 1px solid var(--line);
-    border-top: 3px solid #9fc4e2;
+    border-top: 0;
     background: #fff
 }
 
+.event-type-card::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: var(--gradient-spectrum);
+    content: ''
+}
+
 .event-type-card--public {
-    border-top-color: var(--gold);
-    background: #fffdf8
+    background: var(--gradient-soft)
 }
 
 .event-access {
     display: block;
     min-height: 27px;
-    color: #57718b;
+    color: #53707a;
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: .06em;
     line-height: 1.25;
     text-transform: uppercase
 }
 
 .event-type-card--public .event-access {
-    color: #a06a09
+    color: #0a485e
 }
 
 .event-type-card h4 {
     margin: 12px 0 8px;
     color: var(--navy);
-    font: 600 20px/1.1 Fraunces, Georgia, serif
+    font: 600 20px/1.1 var(--font-heading)
 }
 
 .event-type-card p {
@@ -295,20 +328,20 @@ textarea {
 
 .gallery-filter-button {
     padding: 9px 14px;
-    border: 1px solid #bdd0df;
+    border: 1px solid #cde0df;
     border-radius: 999px;
     background: #fff;
-    color: #46617e;
+    color: #0a485e;
     cursor: pointer;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 400;
     transition: .2s
 }
 
 .gallery-filter-button:hover,
 .gallery-filter-button.active {
     border-color: var(--blue);
-    background: var(--blue);
+    background: var(--gradient-brand);
     color: #fff
 }
 
@@ -348,7 +381,7 @@ textarea {
 .gallery-item::after {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 45%, rgba(5, 31, 62, .78));
+    background: linear-gradient(180deg, transparent 45%, rgba(15, 0, 43, .78));
     content: '';
     pointer-events: none
 }
@@ -364,7 +397,7 @@ textarea {
     bottom: 14px;
     left: 17px;
     color: #fff;
-    font: 600 19px/1.1 Fraunces, Georgia, serif
+    font: 600 19px/1.1 var(--font-heading);
     opacity: 0;
     transform: translateY(7px);
     transition: .25s
@@ -373,8 +406,8 @@ textarea {
 .gallery-item figcaption span {
     display: block;
     margin-bottom: 3px;
-    color: #c9e5f8;
-    font: 700 10px/1.25 'DM Sans', Arial, sans-serif;
+    color: #daf2ef;
+    font: 400 10px/1.25 var(--font-body);
     letter-spacing: .09em;
     text-transform: uppercase
 }
@@ -401,7 +434,7 @@ textarea {
     border: 0;
     border-radius: 5px;
     padding: 14px 21px;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 15px;
     cursor: pointer;
     transition: .2s
@@ -414,12 +447,13 @@ textarea {
 
 .btn-primary {
     color: #fff;
-    background: var(--blue);
-    box-shadow: 0 5px 12px rgba(0, 74, 173, .18)
+    background: var(--gradient-brand);
+    font-weight: 700;
+    box-shadow: 0 5px 12px rgba(10, 72, 94, .18)
 }
 
 .btn-primary:hover {
-    background: #003b8a;
+    background: linear-gradient(110deg, #0f002b 0%, #0a485e 100%);
     transform: translateY(-2px)
 }
 
@@ -429,7 +463,7 @@ textarea {
 
 .btn-ghost {
     color: var(--blue);
-    border: 1px solid #a9c4df
+    border: 1px solid #91d5ce
 }
 
 .btn-ghost:hover {
@@ -442,7 +476,7 @@ textarea {
 }
 
 .btn-light:hover {
-    background: #f1f7fd
+    background: #e5f8f6
 }
 
 .menu-toggle {
@@ -481,7 +515,7 @@ textarea {
     padding-top: 160px;
     padding-bottom: 100px;
     min-height: 670px;
-    background: linear-gradient(180deg, #f4f9fd 0%, #fff 100%);
+    background: var(--gradient-soft);
     overflow: hidden
 }
 
@@ -498,7 +532,7 @@ textarea {
     gap: 11px;
     color: var(--blue);
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: .12em;
     text-transform: uppercase
 }
@@ -512,7 +546,7 @@ textarea {
 .hero h1,
 h1,
 h2 {
-    font-family: Fraunces, Georgia, serif;
+    font-family: var(--font-heading);
     font-weight: 600;
     line-height: 1.08;
     letter-spacing: -.035em
@@ -527,7 +561,11 @@ h2 {
 
 .hero h1 em,
 h2 em {
-    color: var(--blue);
+    background: linear-gradient(100deg, #0a485e 0%, #0f002b 100%);
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-style: normal
 }
 
@@ -549,7 +587,7 @@ h2 em {
 }
 
 .trust-row div {
-    border-left: 2px solid #c7dff4;
+    border-left: 2px solid #0ddbce;
     padding-left: 11px
 }
 
@@ -560,7 +598,8 @@ h2 em {
 }
 
 .trust-row strong {
-    color: var(--navy)
+    color: var(--navy);
+    font-weight: 400
 }
 
 .trust-row span {
@@ -574,7 +613,8 @@ h2 em {
 
 .art-orbit {
     position: absolute;
-    border: 1px solid #c9deef;
+    border: 1px solid transparent;
+    background: linear-gradient(transparent, transparent) padding-box, var(--gradient-spectrum) border-box;
     border-radius: 50%;
     transform: rotate(-20deg)
 }
@@ -599,7 +639,7 @@ h2 em {
     background: #fff;
     color: var(--ink);
     border: 1px solid var(--line);
-    box-shadow: 0 14px 28px rgba(30, 72, 110, .12);
+    box-shadow: 0 14px 28px rgba(10, 72, 94, .12);
     border-radius: 8px
 }
 
@@ -615,7 +655,7 @@ h2 em {
     font-size: 11px;
     letter-spacing: .12em;
     color: var(--blue);
-    font-weight: 700
+    font-weight: 400
 }
 
 .chart {
@@ -627,8 +667,8 @@ h2 em {
     margin-top: 13px;
     position: relative;
     overflow: hidden;
-    background: #cde4f3;
-    border: 1px solid #b2d1e7
+    background: #c7ece8;
+    border: 1px solid #91d5ce
 }
 
 .classroom-picture:before {
@@ -638,7 +678,7 @@ h2 em {
     right: 0;
     bottom: 0;
     height: 62px;
-    background: #b47a54
+    background: #0a485e
 }
 
 .classroom-picture:after {
@@ -648,7 +688,7 @@ h2 em {
     right: 0;
     top: 0;
     height: 46px;
-    background: #eef7fc
+    background: #e5f8f6
 }
 
 .picture-board {
@@ -659,8 +699,8 @@ h2 em {
     width: 112px;
     height: 62px;
     padding: 10px;
-    background: #4d8069;
-    border: 4px solid #c28e5c;
+    background: #0a485e;
+    border: 4px solid #0ddbce;
     color: #fff;
     font: 700 18px Georgia, serif;
     text-align: center
@@ -673,7 +713,7 @@ h2 em {
     bottom: 22px;
     width: 130px;
     height: 28px;
-    background: #9b623e;
+    background: #0a485e;
     transform: skew(-15deg)
 }
 
@@ -684,7 +724,7 @@ h2 em {
     bottom: 50px;
     width: 45px;
     height: 58px;
-    background: #315c8b;
+    background: #0f002b;
     border-radius: 50% 50% 20% 20%
 }
 
@@ -696,7 +736,8 @@ h2 em {
 }
 
 .chart-caption b {
-    color: var(--blue)
+    color: var(--blue);
+    font-weight: 400
 }
 
 .art-card-note {
@@ -714,14 +755,15 @@ h2 em {
     width: 27px;
     height: 27px;
     border-radius: 50%;
-    background: #e6f3e9;
-    color: #31845d
+    background: #e5f8f6;
+    color: #0a7d74
 }
 
 .art-card-note strong,
 .art-card-note small {
     display: block;
-    font-size: 12px
+    font-size: 12px;
+    font-weight: 400
 }
 
 .art-card-note small {
@@ -737,12 +779,12 @@ h2 em {
     align-items: center;
     width: 110px;
     height: 140px;
-    background: #f2c96d;
-    color: #274b73;
+    background: var(--gradient-brand);
+    color: #fff;
     right: 42px;
     top: 0;
     transform: rotate(8deg);
-    box-shadow: 7px 7px 0 #d4e2ee
+    box-shadow: 7px 7px 0 #cfe4e2
 }
 
 .art-book-logo {
@@ -750,7 +792,7 @@ h2 em {
     width: 52px;
     height: 52px;
     object-fit: contain;
-    filter: invert(25%) sepia(24%) saturate(1421%) hue-rotate(171deg) brightness(88%) contrast(89%)
+    filter: brightness(0) invert(1)
 }
 
 .art-book small {
@@ -762,7 +804,7 @@ h2 em {
 
 .art-star {
     position: absolute;
-    color: var(--gold);
+    color: var(--blue);
     right: 20px;
     top: 150px;
     font-size: 30px
@@ -771,7 +813,7 @@ h2 em {
 .art-dot {
     position: absolute;
     border-radius: 50%;
-    background: #8ebede
+    background: #0ddbce
 }
 
 .dot-a {
@@ -814,7 +856,7 @@ h2 em {
     flex-direction: column;
     justify-content: end;
     padding: 30px;
-    background: #6f9cbd;
+    background: var(--gradient-brand-glow);
     color: #fff;
     overflow: hidden
 }
@@ -826,7 +868,7 @@ h2 em {
     left: 0;
     right: 0;
     height: 120px;
-    background: #e8f3f9
+    background: #e5f8f6
 }
 
 .frame-inner:after {
@@ -848,14 +890,14 @@ h2 em {
 }
 
 .frame-inner strong {
-    font: 600 31px/1.05 Fraunces, Georgia, serif;
+    font: 600 31px/1.05 var(--font-heading);
     position: relative;
     z-index: 1;
     margin-top: 12px
 }
 
 .frame-inner em {
-    color: #f6d57e;
+    color: #0ddbce;
     font-style: normal
 }
 
@@ -864,7 +906,7 @@ h2 em {
     right: 25px;
     bottom: 25px;
     text-align: center;
-    color: #f5cc69
+    color: #0ddbce
 }
 
 .frame-seal-logo {
@@ -873,12 +915,12 @@ h2 em {
     height: 44px;
     margin: 0 auto;
     object-fit: contain;
-    filter: invert(83%) sepia(32%) saturate(786%) hue-rotate(345deg) brightness(100%) contrast(92%)
+    filter: brightness(0) invert(1)
 }
 
 .frame-seal small {
     display: block;
-    font: 11px/1.2 'DM Sans';
+    font: 11px/1.2 var(--font-body);
     margin-top: 10px;
     color: #fff
 }
@@ -889,8 +931,8 @@ h2 em {
     bottom: 18px;
     background: #fff;
     padding: 16px 20px;
-    box-shadow: 0 8px 20px rgba(30, 72, 110, .14);
-    font: 17px/1.25 Fraunces, Georgia, serif;
+    box-shadow: 0 8px 20px rgba(10, 72, 94, .14);
+    font: 17px/1.25 var(--font-heading);
     color: var(--blue)
 }
 
@@ -911,8 +953,8 @@ h2 {
     margin-top: 15px;
     color: var(--blue);
     font-size: 15px;
-    font-weight: 700;
-    border-bottom: 1px solid #b1cce4;
+    font-weight: 400;
+    border-bottom: 1px solid #91d5ce;
     padding-bottom: 5px
 }
 
@@ -947,6 +989,7 @@ h2 {
 }
 
 .course-card {
+    position: relative;
     min-height: 340px;
     padding: 23px;
     background: #fff;
@@ -958,20 +1001,40 @@ h2 {
 }
 
 .course-card:hover {
-    border-color: #9cbddb;
-    box-shadow: 0 9px 20px rgba(24, 74, 119, .1);
+    border-color: #91d5ce;
+    box-shadow: 0 9px 20px rgba(10, 72, 94, .1);
     transform: translateY(-3px)
 }
 
 .course-card.prep {
-    border-top: 3px solid var(--blue)
+    border-top: 0
+}
+
+.course-card.prep::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: var(--gradient-spectrum);
+    content: ''
 }
 
 .course-card.crazy {
-    background: #eef6fc;
-    border: 1px solid #a8c7e1;
-    border-top: 4px solid var(--blue);
+    background: var(--gradient-soft);
+    border: 1px solid #91d5ce;
+    border-top: 0;
     color: var(--ink)
+}
+
+.course-card.crazy::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: var(--gradient-spectrum);
+    content: ''
 }
 
 .card-top {
@@ -989,16 +1052,16 @@ h2 {
     background: var(--sky);
     color: var(--blue);
     font-size: 20px;
-    font-weight: 700
+    font-weight: 400
 }
 
 .card-arrow {
-    color: #9aafc1;
+    color: #53707a;
     font-size: 20px
 }
 
 .course-card h3 {
-    font: 600 24px Fraunces, Georgia, serif;
+    font: 600 24px var(--font-heading);
     margin: 24px 0 8px;
     color: var(--navy)
 }
@@ -1013,7 +1076,7 @@ h2 {
 .audience {
     font-size: 11px;
     color: var(--blue);
-    font-weight: 700;
+    font-weight: 400;
     margin: 15px 0 7px;
     text-transform: uppercase;
     letter-spacing: .05em
@@ -1034,7 +1097,7 @@ h2 {
 .course-card li:before {
     content: '✓';
     color: var(--blue);
-    font-weight: 700;
+    font-weight: 400;
     margin-right: 7px
 }
 
@@ -1046,7 +1109,7 @@ h2 {
     text-align: left;
     color: var(--blue);
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 400;
     cursor: pointer
 }
 
@@ -1059,10 +1122,10 @@ h2 {
     position: absolute;
     top: 24px;
     left: 77px;
-    color: var(--gold);
+    color: var(--blue);
     font-size: 11px;
     letter-spacing: .1em;
-    font-weight: 700
+    font-weight: 400
 }
 
 .crazy {
@@ -1074,18 +1137,18 @@ h2 {
     position: absolute;
     right: 16px;
     bottom: 10px;
-    color: rgba(0, 74, 173, .06);
+    color: rgba(10, 72, 94, .06);
     font-size: 110px
 }
 
 .crazy .course-icon {
-    background: #fff1cf;
-    color: var(--gold)
+    background: #e5f8f6;
+    color: var(--navy)
 }
 
 .crazy-section {
     padding: 95px 0;
-    background: var(--navy);
+    background: var(--gradient-brand-glow);
     color: #fff
 }
 
@@ -1100,14 +1163,22 @@ h2 {
     color: #fff
 }
 
+.crazy-copy h2 em,
+.cta-inner h2 em {
+    background: linear-gradient(100deg, #fff 0%, #0ddbce 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+}
+
 .crazy-copy>p:not(.eyebrow) {
     max-width: 470px;
-    color: #d3e3f0;
+    color: #daf2ef;
     font-size: 16px
 }
 
 .eyebrow.light {
-    color: #b5d6ef
+    color: #daf2ef
 }
 
 .crazy-points {
@@ -1118,27 +1189,28 @@ h2 {
 
 .crazy-points span {
     font-size: 15px;
-    color: #dcebf5
+    color: #daf2ef
 }
 
 .crazy-points b {
-    color: #f5cc69;
+    color: #0ddbce;
     font-size: 12px;
+    font-weight: 400;
     margin-right: 15px
 }
 
 .crazy-art {
     height: 330px;
     position: relative;
-    border: 1px solid #61829f;
+    border: 1px solid #53707a;
     border-radius: 8px;
-    background: #19466f
+    background: var(--gradient-spectrum)
 }
 
 .med-orbit {
     position: absolute;
     inset: 38px;
-    border: 1px solid #83b4d8;
+    border: 1px solid #0ddbce;
     border-radius: 50%;
     transform: rotate(25deg)
 }
@@ -1150,7 +1222,7 @@ h2 {
     transform: translate(-50%, -55%);
     font-size: 145px;
     line-height: 1;
-    color: #8bbddd;
+    color: #0ddbce;
     font-family: Arial;
     font-weight: 200
 }
@@ -1159,11 +1231,11 @@ h2 {
     position: absolute;
     right: -17px;
     top: 32px;
-    background: #f5ce72;
-    color: #25466b;
+    background: #0ddbce;
+    color: #0a485e;
     padding: 17px 21px;
     transform: rotate(5deg);
-    box-shadow: 5px 5px 0 #103052
+    box-shadow: 5px 5px 0 #0f002b
 }
 
 .med-note small {
@@ -1174,7 +1246,7 @@ h2 {
 
 .med-note strong {
     display: block;
-    font: 600 20px/1.05 Fraunces, Georgia, serif;
+    font: 600 20px/1.05 var(--font-heading);
     margin-top: 8px
 }
 
@@ -1184,8 +1256,8 @@ h2 {
     left: 26px;
     width: 82px;
     height: 42px;
-    border-top: 1px solid #8bbddd;
-    border-bottom: 1px solid #8bbddd;
+    border-top: 1px solid #0ddbce;
+    border-bottom: 1px solid #0ddbce;
     transform: skewY(-18deg)
 }
 
@@ -1217,8 +1289,8 @@ h2 {
 }
 
 .diff-item span {
-    color: #91afd0;
-    font: 20px Fraunces, serif
+    color: #53707a;
+    font: 20px var(--font-heading)
 }
 
 .diff-item h3 {
@@ -1251,7 +1323,7 @@ h2 {
 
 .goal:hover {
     border-color: var(--blue);
-    box-shadow: 0 7px 15px rgba(0, 74, 173, .1)
+    box-shadow: 0 7px 15px rgba(10, 72, 94, .1)
 }
 
 .goal>span {
@@ -1262,7 +1334,7 @@ h2 {
 
 .goal strong {
     color: var(--navy);
-    font: 600 17px/1.12 Fraunces, Georgia, serif
+    font: 600 17px/1.12 var(--font-heading)
 }
 
 .goal small {
@@ -1272,12 +1344,12 @@ h2 {
 }
 
 .goal-dark {
-    background: #eef6fc;
-    border-color: #bad1e5
+    background: linear-gradient(135deg, #f3fbfa 0%, #e5f8f6 58%, rgba(13, 219, 206, .24) 100%);
+    border-color: #c7ece8
 }
 
 .testimonials {
-    background: #f8fafc
+    background: var(--gradient-soft)
 }
 
 .testimonial-layout {
@@ -1298,11 +1370,11 @@ h2 {
     padding: 50px 55px;
     background: #fff;
     border: 1px solid var(--line);
-    box-shadow: 0 9px 20px rgba(27, 62, 98, .06)
+    box-shadow: 0 9px 20px rgba(10, 72, 94, .06)
 }
 
 .quote-mark {
-    color: #9fc4e2;
+    color: #0ddbce;
     font: 80px/0.5 Georgia, serif
 }
 
@@ -1310,13 +1382,13 @@ h2 {
     max-width: 600px;
     margin: 22px 0 26px;
     color: var(--navy);
-    font: 24px/1.28 Fraunces, Georgia, serif
+    font: 24px/1.28 var(--font-heading)
 }
 
 .testimonial-author {
     color: var(--blue);
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: .08em;
     text-transform: uppercase
 }
@@ -1331,7 +1403,7 @@ h2 {
 .slider-controls button {
     width: 34px;
     height: 34px;
-    border: 1px solid #bbcee0;
+    border: 1px solid #cde0df;
     background: #fff;
     color: var(--blue);
     cursor: pointer
@@ -1346,7 +1418,7 @@ h2 {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #bbcee0
+    background: #cde0df
 }
 
 .slider-dots i.active {
@@ -1357,7 +1429,7 @@ h2 {
 
 .cta-section {
     padding: 67px 0;
-    background: var(--blue);
+    background: var(--gradient-brand-glow);
     color: #fff
 }
 
@@ -1378,7 +1450,7 @@ h2 {
 }
 
 .cta-actions p {
-    color: #d3e6f7;
+    color: #daf2ef;
     font-size: 15px;
     margin: 0 0 20px
 }
@@ -1387,8 +1459,8 @@ h2 {
     display: block;
     width: max-content;
     margin-top: 15px;
-    color: #d3e6f7;
-    border-bottom: 1px solid #8dbce0;
+    color: #daf2ef;
+    border-bottom: 1px solid #0ddbce;
     padding-bottom: 3px;
     font-size: 14px
 }
@@ -1441,14 +1513,15 @@ h2 {
 }
 
 .contact-details strong {
-    font-size: 14px
+    font-size: 14px;
+    font-weight: 400
 }
 
 .contact-form {
     display: grid;
     gap: 15px;
     padding: 28px;
-    background: #f7fafc;
+    background: var(--gradient-soft);
     border: 1px solid var(--line);
     border-radius: 7px
 }
@@ -1462,7 +1535,7 @@ h2 {
 .contact-form label {
     color: var(--navy);
     font-size: 13px;
-    font-weight: 700
+    font-weight: 400
 }
 
 .contact-form input,
@@ -1471,7 +1544,7 @@ h2 {
     width: 100%;
     margin-top: 6px;
     padding: 11px 12px;
-    border: 1px solid #d1deea;
+    border: 1px solid #cfe4e2;
     border-radius: 4px;
     background: #fff;
     outline: 0;
@@ -1484,7 +1557,7 @@ h2 {
 .contact-form select:focus,
 .contact-form textarea:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(0, 74, 173, .08)
+    box-shadow: 0 0 0 3px rgba(10, 72, 94, .08)
 }
 
 .contact-form label.invalid input,
@@ -1514,12 +1587,12 @@ h2 {
 
 .map-placeholder {
     height: 170px;
-    background: #edf4f9;
+    background: #e5f8f6;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #7890a7
+    color: #53707a
 }
 
 .map-pin {
@@ -1537,10 +1610,10 @@ h2 {
 }
 
 .site-footer {
-    background: #f1f6fa;
+    background: var(--gradient-soft);
     border-top: 1px solid var(--line);
     padding: 54px 0 20px;
-    color: #60748a
+    color: #625d72
 }
 
 .footer-grid {
@@ -1569,7 +1642,7 @@ h2 {
 
 .footer-grid>div:not(:first-child) a {
     display: block;
-    color: #60748a;
+    color: #625d72;
     font-size: 14px;
     margin: 9px 0
 }
@@ -1586,14 +1659,14 @@ h2 {
     width: 32px;
     height: 32px !important;
     border-radius: 50%;
-    background: #eef6fc;
+    background: #e5f8f6;
     color: var(--blue);
     transition: 0.2s;
 }
 
 .socials a:hover {
     background: var(--blue);
-    color: #ffff;
+    color: #fff;
 }
 
 .footer-bottom {
@@ -1614,7 +1687,7 @@ h2 {
     height: 37px;
     border: 0;
     border-radius: 50%;
-    background: var(--gold);
+    background: var(--gradient-brand);
     color: #fff;
     cursor: pointer;
     opacity: 0;
@@ -1724,7 +1797,7 @@ h2 {
         align-items: stretch;
         padding: 15px 18px;
         background: #fff;
-        box-shadow: 0 8px 18px rgba(30, 65, 100, .12);
+        box-shadow: 0 8px 18px rgba(10, 72, 94, .12);
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
@@ -1980,8 +2053,8 @@ h2 {
     background: #fff;
     color: var(--blue);
     font-size: 13px;
-    font-weight: 700;
-    box-shadow: 0 2px 8px rgba(20, 55, 90, .18)
+    font-weight: 400;
+    box-shadow: 0 2px 8px rgba(10, 72, 94, .18)
 }
 
 .map-placeholder.map-placeholder {
@@ -2012,7 +2085,7 @@ h2 {
 
 .privacy-consent a {
     color: var(--blue);
-    font-weight: 700;
+    font-weight: 400;
     text-decoration: underline
 }
 
@@ -2040,7 +2113,7 @@ h2 {
 .privacy-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(16, 52, 93, .55)
+    background: rgba(10, 72, 94, .55)
 }
 
 .privacy-modal-card {
@@ -2052,7 +2125,7 @@ h2 {
     padding: 34px 36px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 20px 55px rgba(16, 52, 93, .25)
+    box-shadow: 0 20px 55px rgba(10, 72, 94, .25)
 }
 
 .privacy-modal-card h2 {
@@ -2094,6 +2167,6 @@ h2 {
 .privacy-note {
     padding: 12px;
     background: var(--pale);
-    border-left: 3px solid var(--gold);
+    border-left: 3px solid var(--accent);
     font-size: 13px
 }
