@@ -59,8 +59,8 @@ A landing page foi desenvolvida para transmitir profissionalismo, seriedade e ao
 ## 📝 Checklist Antes da Publicação
 
 Antes de colocar o projeto em produção, certifique-se de preencher/ajustar os seguintes pontos:
-- [ ] **Links do WhatsApp**: Substituir os links `https://wa.me/SEU_NUMERO_AQUI` em `index.html` pelos números reais de atendimento da escola.
+- [x] **Links do WhatsApp**: Configurados para o número `(18) 99610-4125`.
 - [ ] **Depoimentos**: Inserir depoimentos reais de alunos/pais no HTML/JS na seção `#depoimentos`.
 - [ ] **Política de Privacidade**: Revisar o texto do modal `#politica-privacidade` garantindo conformidade com a LGPD.
-- [ ] **Redes Sociais**: Colocar os links corretos para Instagram e Facebook no rodapé.
+- [x] **Redes Sociais**: Instagram configurado no rodapé; não há link de Facebook informado.
 - [ ] **Google Analytics / Pixel**: Inserir as tags de rastreamento no `<head>` do `index.html` (se for fazer campanhas de marketing).

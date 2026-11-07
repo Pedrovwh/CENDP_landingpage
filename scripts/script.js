@@ -1,6 +1,5 @@
-// WhatsApp do Centro de Estudos: substitua apenas o valor abaixo pelo número completo.
-// Use o formato internacional, somente números: código do país + DDD + número.
-const WHATSAPP_NUMBER = 'SEU_NUMERO_AQUI';
+// WhatsApp do Centro de Estudos em formato internacional.
+const WHATSAPP_NUMBER = '5518996104125';
 
 const whatsappMessageLinks = document.querySelectorAll('a[href*="wa.me"]');
 whatsappMessageLinks.forEach(link => {
@@ -53,26 +52,6 @@ const observer = new IntersectionObserver(entries => entries.forEach(entry => {
 }), { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-const testimonials = [
-  { text: 'O acompanhamento fez muita diferença na minha rotina de estudos.', author: 'Depoimento demonstrativo · substituir por relato real' },
-  { text: 'As aulas e os exercícios ajudaram a entender melhor os conteúdos.', author: 'Depoimento demonstrativo · substituir por relato real' },
-  { text: 'A correção de redação me ajudou a identificar meus principais erros.', author: 'Depoimento demonstrativo · substituir por relato real' }
-];
-let currentTestimonial = 0;
-const testimonialText = document.querySelector('.testimonial-text');
-const testimonialAuthor = document.querySelector('.testimonial-author');
-const dots = document.getElementById('slider-dots');
-testimonials.forEach((_, index) => { const dot = document.createElement('i'); dot.addEventListener('click', () => showTestimonial(index)); dots.appendChild(dot); });
-function showTestimonial(index) {
-  currentTestimonial = (index + testimonials.length) % testimonials.length;
-  testimonialText.textContent = `“${testimonials[currentTestimonial].text}”`;
-  testimonialAuthor.textContent = testimonials[currentTestimonial].author;
-  [...dots.children].forEach((dot, i) => dot.classList.toggle('active', i === currentTestimonial));
-}
-document.getElementById('prev-testimonial').addEventListener('click', () => showTestimonial(currentTestimonial - 1));
-document.getElementById('next-testimonial').addEventListener('click', () => showTestimonial(currentTestimonial + 1));
-showTestimonial(0);
-
 document.querySelectorAll('.course-card').forEach(card => card.addEventListener('click', event => {
   event.preventDefault();
   document.querySelector('[name="course"]').value = card.dataset.course;
@@ -105,12 +84,6 @@ form.addEventListener('submit', event => {
     `Curso de interesse: ${formData.get('course')}`,
     `Mensagem: ${formData.get('message') || 'Não informada.'}`
   ].join('\n');
-
-  if (WHATSAPP_NUMBER === 'SEU_NUMERO_AQUI') {
-    feedback.textContent = 'Configure o número do WhatsApp no início do script.js para enviar a mensagem.';
-    feedback.classList.add('error');
-    return;
-  }
 
   feedback.textContent = 'Abrindo o WhatsApp com sua mensagem...';
   feedback.classList.add('success');
