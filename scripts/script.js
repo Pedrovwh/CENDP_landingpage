@@ -47,6 +47,62 @@ galleryFilters.forEach(button => button.addEventListener('click', () => {
   });
 }));
 
+const galleryModal = document.getElementById('gallery-modal');
+const galleryModalImage = galleryModal.querySelector('.gallery-modal-image');
+const galleryModalKicker = galleryModal.querySelector('.gallery-modal-kicker');
+const galleryModalTitle = galleryModal.querySelector('#gallery-modal-title');
+const galleryModalDescription = galleryModal.querySelector('.gallery-modal-description');
+const galleryModalClose = galleryModal.querySelector('.gallery-modal-close');
+let galleryModalOpener;
+
+function openGalleryModal(item) {
+  const image = item.querySelector('img');
+  const caption = item.querySelector('figcaption');
+  const kicker = caption.querySelector('span').textContent.trim();
+  const title = [...caption.childNodes].filter(node => node.nodeType === Node.TEXT_NODE)
+    .map(node => node.textContent.trim()).join(' ').trim();
+
+  galleryModalOpener = item;
+  galleryModalImage.src = image.currentSrc || image.src;
+  galleryModalImage.alt = image.alt;
+  galleryModalImage.style.objectPosition = getComputedStyle(image).objectPosition;
+  galleryModalKicker.textContent = kicker;
+  galleryModalTitle.textContent = title;
+  galleryModalDescription.textContent = image.alt;
+  galleryModal.classList.add('open');
+  galleryModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  galleryModalClose.focus();
+}
+
+function closeGalleryModal() {
+  galleryModal.classList.remove('open');
+  galleryModal.setAttribute('aria-hidden', 'true');
+  galleryModalImage.removeAttribute('src');
+  document.body.style.overflow = '';
+  galleryModalOpener?.focus();
+}
+
+galleryItems.forEach(item => {
+  const caption = item.querySelector('figcaption');
+  const label = caption.textContent.replace(/\s+/g, ' ').trim();
+  item.setAttribute('role', 'button');
+  item.setAttribute('tabindex', '0');
+  item.setAttribute('aria-haspopup', 'dialog');
+  item.setAttribute('aria-label', `Abrir foto: ${label}`);
+  item.addEventListener('click', () => openGalleryModal(item));
+  item.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openGalleryModal(item);
+    }
+  });
+});
+
+galleryModal.querySelectorAll('[data-close-gallery-modal]').forEach(element => {
+  element.addEventListener('click', closeGalleryModal);
+});
+
 const observer = new IntersectionObserver(entries => entries.forEach(entry => {
   if (entry.isIntersecting) entry.target.classList.add('visible');
 }), { threshold: .12 });
@@ -115,4 +171,5 @@ privacyOpeners.forEach(link => link.addEventListener('click', openPrivacyModal))
 privacyClosers.forEach(element => element.addEventListener('click', closePrivacyModal));
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && privacyModal.classList.contains('open')) closePrivacyModal();
+  if (event.key === 'Escape' && galleryModal.classList.contains('open')) closeGalleryModal();
 });
