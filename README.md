@@ -64,3 +64,11 @@ Antes de colocar o projeto em produção, certifique-se de preencher/ajustar os 
 - [ ] **Política de Privacidade**: Revisar o texto do modal `#politica-privacidade` garantindo conformidade com a LGPD.
 - [x] **Redes Sociais**: Instagram configurado no rodapé; não há link de Facebook informado.
 - [ ] **Google Analytics / Pixel**: Inserir as tags de rastreamento no `<head>` do `index.html` (se for fazer campanhas de marketing).
+
+## SEO e integrações
+
+- A URL canônica adotada no projeto é `https://www.profnatalia.com.br/`. Mantenha essa mesma versão no provedor de hospedagem, no Google Search Console e em campanhas.
+- O `robots.txt` permite o rastreamento público e aponta para o `sitemap.xml`. Como há apenas uma página pública, o sitemap contém somente a página inicial.
+- Para conectar o Google Search Console, adicione no `<head>` de `index.html` a meta de verificação fornecida pelo Google, no comentário indicado. Em seguida, envie `https://www.profnatalia.com.br/sitemap.xml` na seção **Sitemaps** do Search Console.
+- Para conectar o Google Analytics 4, cole no mesmo local do `<head>` a tag oficial fornecida pela propriedade GA4. Não use IDs de exemplo.
+- A hospedagem deve redirecionar permanentemente (301) `http://`, `https://profnatalia.com.br/` e `http://profnatalia.com.br/` para `https://www.profnatalia.com.br/`. Esse redirecionamento não pode ser criado por esta página estática; configure-o no painel do provedor ou no proxy/CDN.
